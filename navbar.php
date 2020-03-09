@@ -1,11 +1,11 @@
-<?php include_once 'funciones.php';?>
+<?php include_once 'soporte.php';?>
 <body>
 
 
 <header>
   <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 
-    <div class="container-fluid">
+    <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle= "collapse" data-target= "#navegacion fm" >
           <span class="sr-only"> Desplegar 7Ocultar Menu</span>
@@ -46,7 +46,7 @@
   <a class="btn btn-primary" href="ayuda.php"><span class="glyphicon glyphicon-question-sign"></span></a>
 </form>
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<?php if(!loginController()): 
+<?php if(!$auth->loginController()): 
             // Aca uso el controller de login para darle dinamica a la navbar.
             // Solo muestro Login y Register a usuarios no autenticados!
         ?>
@@ -55,7 +55,7 @@
     <li> <a href="registro.php">Registro</a> </li>
   </ul>
   <?php endif;?>
-  <?php if(loginController()):?>
+  <?php if($auth->loginController()):?>
     <ul class="nav navbar-nav navbar-right">
     <li> <a href="perfil.php">Perfil</a> </li>
     <li> <a href="logout.php">Salir</a> </li>
