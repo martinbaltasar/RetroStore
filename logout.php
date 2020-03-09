@@ -1,14 +1,9 @@
 <?php
 
-session_start();
+include_once('funciones.php');
 
-session_unset();
-
-session_destroy();
-
-header('location: login.php');
-
-
+logout();
+header("Location: login.php");
 
 
 
