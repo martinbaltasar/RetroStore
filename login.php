@@ -1,6 +1,6 @@
 <?php
 
-include_once('funciones.php');
+/*include_once('funciones.php');
 
 if (isset($_SESSION['email'])) {
   header('location : login.php');
@@ -21,7 +21,21 @@ if($_POST) {
         // Lo derivo a su perfil y corto la ejecucion de codigo.
         exit;
     }
+}*/
+include_once('soporte.php');
+$email = "";
+if($_POST){
+    $errores = $validador->validarLogin($_POST); 
+    $email = $_POST["email"];
+      if(count($errores)==0){
+        
+          $usuario = new Usuario(NULL,NULL,NULL,$_POST["email"],$_POST["password"]);
+          $auth->login($usuario);
+         header("location: perfil.php");
+         exit;
+ }
 }
+
 include_once 'head.php';
 include_once 'navbar.php';
  ?>
@@ -42,16 +56,15 @@ include_once 'navbar.php';
 
                             <div class="form-group">
 
-                              <?=isset($errores["email"])?$errores["email"]:""?>
                           <div class="form-group">
 
                               <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"</i></span>
                               <div class="col-md-8">
-                                  <input id="email" name="email" type="email" placeholder="Correo o Nombre de Usuario" class="form-control" value="<?=isset($errores["email"])?$errores["email"]:""?>">
+                                  <input id="email" name="email" type="email" placeholder="Correo o Nombre de Usuario" class="form-control" value="<?=$email?>">
                               </div>
                           </div>
 
-                          <?=isset($errores["password"])?$errores["password"]:""?>
+                          
                       <div class="form-group">
                           <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                             <div class="col-md-8">

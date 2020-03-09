@@ -72,7 +72,7 @@ public function setCpass($pass){
 
 			if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
         $errores["avatar"] = "Solo acepto formatos jpg y png";
-        return $errores;
+      
 			}
 
 			$miArchivo = dirname(__DIR__);
