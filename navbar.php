@@ -45,7 +45,7 @@
 </button>
   <a class="btn btn-primary" href="ayuda.php"><span class="glyphicon glyphicon-question-sign"></span></a>
 </form>
-<div class="collapse navbar-collapse" id="navegacion fm">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
 <?php if(!loginController()): 
             // Aca uso el controller de login para darle dinamica a la navbar.
             // Solo muestro Login y Register a usuarios no autenticados!

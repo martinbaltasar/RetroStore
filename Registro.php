@@ -29,18 +29,18 @@ include_once 'navbar.php';
 <!--inicia Registro -->
 
 
-    <?php if(isset($errores)):?>
-    <ul>
-    <?php foreach($errores as $error):?>
-        <li class="alert alert-danger"><?=$error ?></li>
-    <?php endforeach;?>
-    </ul>
-    <?php endif;?>
 
 
 
 
-    <div class="container">
+
+
+ <div class="container">
+   <?php if(isset($errores)):?>
+     <?php foreach($errores as $error):?>
+       <div class="alert alert-danger"><?=$error ?></div>
+     <?php endforeach;?>
+   <?php endif;?>
         <div class="row">
             <div class="col-md-12">
                 <div class="well well-sm">

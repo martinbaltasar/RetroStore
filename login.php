@@ -27,6 +27,11 @@ include_once 'navbar.php';
  ?>
 
     <div class="container">
+    <?php if(isset($errores)):?>
+     <?php foreach($errores as $error):?>
+       <div class="alert alert-danger"><?=$error ?></div>
+     <?php endforeach;?>
+   <?php endif;?>
         <div class="row">
             <div class="col-md-12">
                 <div class="well well-sm">
@@ -42,7 +47,7 @@ include_once 'navbar.php';
 
                               <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"</i></span>
                               <div class="col-md-8">
-                                  <input id="email" name="email" type="email" placeholder="Correo o Nombre de Usuario" class="form-control" value="">
+                                  <input id="email" name="email" type="email" placeholder="Correo o Nombre de Usuario" class="form-control" value="<?=isset($errores["email"])?$errores["email"]:""?>">
                               </div>
                           </div>
 
