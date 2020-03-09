@@ -76,7 +76,7 @@ public function setCpass($pass){
 			}
 
 			$miArchivo = dirname(__DIR__);
-      $miArchivo = $miArchivo . "../perfil/";
+      $miArchivo = $miArchivo . "../img/";
 			$miArchivo = $miArchivo . $mail . "." . $ext;
 
 			move_uploaded_file($archivo, $miArchivo);

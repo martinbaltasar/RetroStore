@@ -1,7 +1,7 @@
 
 <?php
 
-include_once('funciones.php');
+/*include_once('funciones.php');
 
 if($_POST) {
     // 1 - Validar
@@ -21,19 +21,34 @@ if($_POST) {
             exit;
         }
     }
+}*/
+include_once 'soporte.php';
+$name="";
+$last_name="";
+$username="";
+$email="";
+if($_POST){
+    $errores = $validador->validarInformacion($_POST);
+    $name = $_POST['name'];
+    $username=$_POST['username'];
+    $email=$_POST['email'];
+if(count($errores) == 0) {
+    $usuario = new Usuario(NULL,$_POST['name'],$_POST['username'], $_POST['email'], $_POST['password']);
+
+    $usuario->guardarImagen();
+
+    $db->guardarUsuario($usuario);
+
+    header("location: login.php");
+    
+    exit;
+ }
 }
 include_once 'head.php';
 include_once 'navbar.php';
  ?>
 
 <!--inicia Registro -->
-
-
-
-
-
-
-
 
  <div class="container">
    <?php if(isset($errores)):?>
@@ -54,7 +69,7 @@ include_once 'navbar.php';
             <div class="form-group">
               <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
               <div class="col-md-8">
-                  <input id="usuario" name="username" type="text" placeholder="Usuario" class="form-control" value="<?=!isset($errores['username']) ? old('username') : "" ?>">
+                  <input id="usuario" name="username" type="text" placeholder="Usuario" class="form-control" value="<?=$username?>">
                 </div>
                 </div>
 
@@ -62,7 +77,7 @@ include_once 'navbar.php';
             <div class="form-group">
                   <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
               <div class="col-md-8">
-                  <input id="name" name="name" type="text" placeholder="Nombre" class="form-control" value="">
+                  <input id="name" name="name" type="text" placeholder="Nombre" class="form-control" value="<?=$name?>">
               </div>
             </div>
 
@@ -70,7 +85,7 @@ include_once 'navbar.php';
               <div class="form-group">
                 <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                     <div class="col-md-8">
-                          <input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control" value="">
+                          <input id="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control" value="<?=$last_name?>">
                     </div>
                 </div>
 
@@ -86,7 +101,7 @@ include_once 'navbar.php';
                   <div class="form-group">
                       <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                         <div class="col-md-8">
-                          <input id="email" name="email" type="email" placeholder="Email" class="form-control" value="">
+                          <input id="email" name="email" type="email" placeholder="Email" class="form-control" value="<?=$email?>">
                             </div>
                         </div>
 
@@ -101,9 +116,17 @@ include_once 'navbar.php';
                                <div class="form-group">
                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
                                  <div class="col-md-8">
-                                   <input id="confirmarpassword" name="confirmarpassword" type="password" placeholder="Confirmar Contraseña" class="form-control"></div>
+                                   <input id="cpassword" name="cpassword" type="password" placeholder="Confirmar Contraseña" class="form-control"></div>
                                </div>
-
+                               <div class="form-group">
+                               <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                                 <div class="col-md-8">
+                                 <input class="form-check-input" type="checkbox"   name="confirm" id="defaultCheck1" value="">
+                  
+                    <label class="form-check-label" for="defaultCheck1">
+                     Acepto los terminos de uso y politicas de seguridad
+                    </label>
+                     </div>
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
