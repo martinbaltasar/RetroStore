@@ -23,6 +23,10 @@ if($_POST) {
     }
 }*/
 include_once 'soporte.php';
+if($auth->loginController()) {
+    header("location: index.php");
+            exit;
+}
 $name="";
 $last_name="";
 $username="";

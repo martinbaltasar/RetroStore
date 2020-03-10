@@ -1,6 +1,10 @@
 <?php
 
 include_once('soporte.php');
+if(!$auth->loginController()) {
+    header("location: inicio.php");
+            exit;
+}
 
 // Generando el perfil dinamicamente!
 // SI hay $_SESSION:
@@ -49,7 +53,7 @@ include_once 'navbar.php';
 
 
     <?php //SI EL CONTROLLER DE LOGIN DA FALSE, MUESTRO EL SIGUIENTE BLOQUE ?>
-    <?php if(!loginController()): ?>
+    <?php if(!$auth->loginController()): ?>
     <div class="alert alert-danger" role="alert">
         No estas autorizado en este sistema <a href="register.php" class="alert-link">Registrate!</a>
     </div>

@@ -23,6 +23,10 @@ if($_POST) {
     }
 }*/
 include_once('soporte.php');
+if($auth->loginController()) {
+    header("location: inicio.php");
+            exit;
+}
 $email = "";
 if($_POST){
     $errores = $validador->validarLogin($_POST); 
